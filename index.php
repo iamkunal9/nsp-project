@@ -1,3 +1,15 @@
+<?php
+global $submitresp;
+global $formstat;
+
+   if(isset($_POST["contact_name"], $_POST["contact_email"], $_POST["contact_message"])){
+    $submitresp = "Form Submitted Successfully";
+    $formstat = TRUE;
+
+
+   }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,7 +60,23 @@
                     <br>
                     <nav>
                         <h2 style="text-align: center;">Congratulations</h2>
-                        <marquee width="350px" direction="up" height="500apx" style="text-align: center;" onmouseover="this.stop();" onmouseout="this.start();">
+                        <marquee width="354px" direction="up" height="400apx" style="text-align: center;" onmouseover="this.stop();" onmouseout="this.start();">
+                            <ul>
+                            
+                            <li>Selections with Tech Mahindra | B.Tech. (CS, CC, IT, DS, AI & ECE) & MCA -2023 Batch <a href="https://exampel.com">Click Here</a></li>
+                            <li>Selections with Tech Mahindra | B.Tech. (CS, CC, IT, DS, AI & ECE) & MCA -2023 Batch <a href="https://exampel.com">Click Here</a></li>
+                            <li>Selections with Tech Mahindra | B.Tech. (CS, CC, IT, DS, AI & ECE) & MCA -2023 Batch <a href="https://exampel.com">Click Here</a></li>
+                            <li>Selections with Tech Mahindra | B.Tech. (CS, CC, IT, DS, AI & ECE) & MCA -2023 Batch <a href="https://exampel.com">Click Here</a></li>
+                            
+                        </ul>
+                        </marquee>
+
+                    
+                    </nav>
+                    <br>
+                    <nav>
+                        <h2 style="text-align: center;">Notification</h2>
+                        <marquee width="354px" direction="up" height="350apx" style="text-align: center;" onmouseover="this.stop();" onmouseout="this.start();">
                             <ul>
                             
                             <li>Selections with Tech Mahindra | B.Tech. (CS, CC, IT, DS, AI & ECE) & MCA -2023 Batch <a href="https://exampel.com">Click Here</a></li>
@@ -80,7 +108,7 @@
                                     <h2 class="tm-section-title">Companies Detail for Hiring</h2>
                                     <p>All details should be provide by company for hiring pourpuse . Student get information for apply in comapny .</p>    
                                 </div>                            
-                                <a href="#" class="tm-welcome-link tm-button">See Now</a>
+                                <a href="#services" class="tm-welcome-link tm-button">See Now</a>
                             </div>
                         </div>
                     </div>
@@ -196,7 +224,7 @@
                             <div style="width: 100%;" class="tm-contact-left-half tm-gray-bg">
                                 <div class="tm-contact-inner-pad">
                                     <h2 class="tm-section-title">Contact Us</h2>
-                                    <form action="#contact" method="post" class="contact-form">
+                                    <form action="index.php#contact" method="post" class="contact-form">
 
                                         <div class="form-group">
                                             <input type="text" id="contact_name" name="contact_name" class="form-control" placeholder="Name"  required/>
@@ -208,7 +236,8 @@
                                             <textarea id="contact_message" name="contact_message" class="form-control" rows="9" placeholder="Message" required></textarea>
                                         </div>
                                         
-                                        <button type="submit" class="btn btn-primary pull-xs-right tm-button tm-button-normal">Submit</button>
+                                        <button type="submit" class="btn btn-primary pull-xs-right tm-button tm-button-normal" <?php if($formstat) echo "hidden='true'";?>>Submit</button>
+                                        <p><?php echo $submitresp;?></p>
 
                                     </form>
                                 </div>                                
