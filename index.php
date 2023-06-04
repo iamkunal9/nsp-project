@@ -1,10 +1,29 @@
 <?php
 global $submitresp;
 global $formstat;
-
+$servername = "127.0.0.1";
+$username = "root";
+$password = "collegesucks!@";
+$dbname = "nsp";
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
    if(isset($_POST["contact_name"], $_POST["contact_email"], $_POST["contact_message"])){
-    $submitresp = "Form Submitted Successfully";
+    
+    
+    $stmt = $conn->prepare("INSERT INTO contact_us (name, email, message) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $_POST["contact_name"], $_POST["contact_email"], $_POST["contact_message"]);
+    if ($stmt->execute()) {
+        $submitresp = "Form Submitted Successfully";
     $formstat = TRUE;
+    } else {
+        $submitresp = "Error Submitting the form";
+    $formstat = TRUE;
+    }
+    
+    $stmt->close();
+    $conn->close();
 
 
    }
@@ -32,7 +51,7 @@ global $formstat;
 
             <section id="welcome" class="tm-content-box tm-banner margin-b-10">
                 <div class="tm-banner-inner">
-                    <h1 class="tm-banner-title">Poornima Placement website</h1>                        
+                    <h1 class="tm-banner-title">Poornima Placements</h1>                        
                 </div>                    
             </section>
 
@@ -62,12 +81,30 @@ global $formstat;
                         <h2 style="text-align: center;">Congratulations</h2>
                         <marquee width="354px" direction="up" height="400apx" style="text-align: center;" onmouseover="this.stop();" onmouseout="this.start();">
                             <ul>
+                            <?php 
+                            $conn = new mysqli($servername, $username, $password, $dbname);
+                            if ($conn->connect_error) {
+                                die("Connection failed: " . $conn->connect_error);
+                            }
+                            $sql = "SELECT details FROM selections";
+                            $result = $conn->query($sql);
                             
-                            <li>Selections with Tech Mahindra | B.Tech. (CS, CC, IT, DS, AI & ECE) & MCA -2023 Batch <a href="https://exampel.com">Click Here</a></li>
-                            <li>Selections with Tech Mahindra | B.Tech. (CS, CC, IT, DS, AI & ECE) & MCA -2023 Batch <a href="https://exampel.com">Click Here</a></li>
-                            <li>Selections with Tech Mahindra | B.Tech. (CS, CC, IT, DS, AI & ECE) & MCA -2023 Batch <a href="https://exampel.com">Click Here</a></li>
-                            <li>Selections with Tech Mahindra | B.Tech. (CS, CC, IT, DS, AI & ECE) & MCA -2023 Batch <a href="https://exampel.com">Click Here</a></li>
+                            // Check if there are any rows returned
+                            if ($result->num_rows > 0) {
+                                echo "<ul>";
+                                // Loop through each row and display the data
+                                while ($row = $result->fetch_assoc()) {
+                                    echo "<li>" . $row["details"] . "</li>";
+                                }
+                                echo "</ul>";
+                            } else {
+                                echo "No data found";
+                            }
                             
+                            // Close the database connection
+                            $conn->close();
+                            
+                            ?>
                         </ul>
                         </marquee>
 
@@ -77,14 +114,30 @@ global $formstat;
                     <nav>
                         <h2 style="text-align: center;">Notification</h2>
                         <marquee width="354px" direction="up" height="350apx" style="text-align: center;" onmouseover="this.stop();" onmouseout="this.start();">
-                            <ul>
+                            <?php 
+                            $conn = new mysqli($servername, $username, $password, $dbname);
+                            if ($conn->connect_error) {
+                                die("Connection failed: " . $conn->connect_error);
+                            }
+                            $sql = "SELECT details FROM selections";
+                            $result = $conn->query($sql);
                             
-                            <li>Selections with Tech Mahindra | B.Tech. (CS, CC, IT, DS, AI & ECE) & MCA -2023 Batch <a href="https://exampel.com">Click Here</a></li>
-                            <li>Selections with Tech Mahindra | B.Tech. (CS, CC, IT, DS, AI & ECE) & MCA -2023 Batch <a href="https://exampel.com">Click Here</a></li>
-                            <li>Selections with Tech Mahindra | B.Tech. (CS, CC, IT, DS, AI & ECE) & MCA -2023 Batch <a href="https://exampel.com">Click Here</a></li>
-                            <li>Selections with Tech Mahindra | B.Tech. (CS, CC, IT, DS, AI & ECE) & MCA -2023 Batch <a href="https://exampel.com">Click Here</a></li>
+                            // Check if there are any rows returned
+                            if ($result->num_rows > 0) {
+                                echo "<ul>";
+                                // Loop through each row and display the data
+                                while ($row = $result->fetch_assoc()) {
+                                    echo "<li>" . $row["details"] . "</li>";
+                                }
+                                echo "</ul>";
+                            } else {
+                                echo "No data found";
+                            }
                             
-                        </ul>
+                            // Close the database connection
+                            $conn->close();
+                            
+                            ?>
                         </marquee>
 
                     
@@ -184,11 +237,30 @@ global $formstat;
                         <div class="tm-box-pad tm-services-description-container">
                             <h2 class="tm-section-title">Apply Now</h2>
                             <marquee width="60%" direction="up" height="450px" onmouseover="this.stop();" onmouseout="this.start();">
-                                <ul>
-                                <li>Interaction session :: Civil Services preparation | PGC-2025 Batch <a href="https://example.com">Click Here</a></li>
-                                <li>Interaction session :: Civil Services preparation | PGC-2025 Batch <a href="https://example.com">Click Here</a></li>
-                                <li>Interaction session :: Civil Services preparation | PGC-2025 Batch <a href="https://example.com">Click Here</a></li>
-                                </ul>
+                            <?php 
+                            $conn = new mysqli($servername, $username, $password, $dbname);
+                            if ($conn->connect_error) {
+                                die("Connection failed: " . $conn->connect_error);
+                            }
+                            $sql = "SELECT details FROM selections";
+                            $result = $conn->query($sql);
+                            
+                            // Check if there are any rows returned
+                            if ($result->num_rows > 0) {
+                                echo "<ul>";
+                                // Loop through each row and display the data
+                                while ($row = $result->fetch_assoc()) {
+                                    echo "<li>" . $row["details"] . "</li>";
+                                }
+                                echo "</ul>";
+                            } else {
+                                echo "No data found";
+                            }
+                            
+                            // Close the database connection
+                            $conn->close();
+                            
+                            ?>
 
                                 </marquee>
                         </div>                                              
@@ -255,19 +327,6 @@ global $formstat;
                                           
                                           
                                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3562.2661704535194!2d75.84818715023573!3d26.76778417267639!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396dc91e898380fd%3A0xeee859ae1f1b64b0!2sPoornima%20Institute%20of%20Engineering%20and%20Technology!5e0!3m2!1sen!2sin!4v1668529773080!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                                          
-                                          
-                                          
-                                          
-                                          
-                                          
-                                          
-                                          
-                                          
-                                          
-                                          
-                                          
-                                          
                                           
                                        </div>
                                     </div>
